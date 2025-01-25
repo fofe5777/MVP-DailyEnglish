@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily English</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Plan Your Day & Learn English</h1>
+        
+        <!-- Form to input daily activities -->
+        <div class="form-section">
+            <h2>Add Your Activity</h2>
+            <input type="time" id="time" placeholder="Select time">
+            <input type="text" id="activity" placeholder="Enter your activity">
+            <button onclick="addActivity()">Add Activity</button>
+        </div>
+
+        <!-- Display the daily schedule -->
+        <div class="schedule-section">
+            <h2>Your Daily Schedule</h2>
+            <ul id="schedule-list"></ul>
+        </div>
+
+        <!-- Simulate English learning -->
+        <div class="learning-section">
+            <h2>Learn English from Your Activities</h2>
+            <p id="english-output"></p>
+            <button onclick="speakEnglish()">  Speak</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+h1 {
+    color: #007BFF;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.schedule-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.schedule-section li {
+    background: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+
+
+
 
