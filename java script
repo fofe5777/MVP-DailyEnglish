@@ -1,1 +1,56 @@
 
+
+const scheduleList = document.getElementById("schedule-list");
+const englishOutput = document.getElementById("english-output");
+let activities = [];
+
+// Function to add an activity to the schedule
+function addActivity() {
+    const time = document.getElementById("time").value;
+    const activity = document.getElementById("activity").value;
+
+    if (time && activity) {
+        // Add to activities array
+        activities.push({ time, activity });
+
+        // Update the schedule list
+        const listItem = document.createElement("li");
+        listItem.textContent = `${time} - ${activity}`;
+        listItem.setAttribute("data-activity", activity);
+        listItem.onclick = () => showEnglishPhrase(activity); // Add click event to learn English
+        scheduleList.appendChild(listItem);
+
+        // Clear input fields
+        document.getElementById("time").value = "";
+        document.getElementById("activity").value = "";
+    } else {
+        alert("Please enter both time and activity.");
+    }
+}
+
+// Function to show the English phrase for an activity
+function showEnglishPhrase(activity) {
+    const phrases = {
+        "Wake up": "Wake up and start your day!",
+        "Brush teeth": "Brush your teeth for a healthy smile.",
+        "Eat breakfast": "Time to eat your breakfast.",
+        "Go to work": "Head to work and be productive!",
+        "Take a nap": "Relax and take a short nap.",
+    };
+
+    const englishPhrase = phrases[activity] || "No English phrase available for this activity.";
+    englishOutput.textContent = englishPhrase;
+}
+
+// Function to simulate speech
+function speakEnglish() {
+    const text = englishOutput.textContent;
+    if (text) {
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    } else {
+        alert("Please select an activity to learn its English phrase.");
+    }
+}
+
