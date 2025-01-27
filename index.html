@@ -1,111 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily English App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            background-color: #4caf50;
-            color: white;
-            width: 100%;
-            text-align: center;
-            padding: 1rem 0;
-        }
-        .container {
-            margin: 20px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            text-align: center;
-        }
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 10px auto;
-        }
-        button {
-            padding: 10px 20px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4caf50;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .output {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Routine App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+    }
+    .message-box {
+      margin: 20px auto;
+      padding: 20px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      width: 80%;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Daily English App</h1>
-    </header>
+  <h1>Welcome to Your Daily Routine App</h1>
 
-    <div class="container">
-        <img src="https://via.placeholder.com/100" alt="AI Avatar" class="avatar">
-        <p id="welcome-text">Welcome! Let's set up your daily routine.</p>
-        <button onclick="startRoutine()">Let's Go</button>
-        <div id="interaction" class="output"></div>
-    </div>
+  <!-- أفتار -->
+  <img src="https://via.placeholder.com/150" alt="Avatar" class="avatar">
 
-    <script>
-        // Function to start the routine interaction
-        function startRoutine() {
-            const welcomeText = document.getElementById('welcome-text');
-            const interactionDiv = document.getElementById('interaction');
+  <!-- صندوق الرسائل -->
+  <div class="message-box" id="message-box">
+    <p id="english-text">Hello! Let's start setting up your daily routine.</p>
+    <p id="arabic-text">مرحبًا! هيا لنبدأ في تحديد روتينك اليومي.</p>
+  </div>
 
-            welcomeText.textContent = "Great! When do you wake up?";
+  <!-- زر التفاعل -->
+  <button id="speak-btn">Speak</button>
 
-            interactionDiv.innerHTML = `
-                <label for="wake-up">Wake Up Time:</label>
-                <input type="time" id="wake-up">
-                <button onclick="submitRoutine()">Submit</button>
-            `;
-        }
+  <script>
+    // النصوص
+    const englishText = "Hello! Let's start setting up your daily routine.";
+    const arabicText = "مرحبًا! هيا لنبدأ في تحديد روتينك اليومي.";
 
-        // Function to handle the routine input
-        function submitRoutine() {
-            const wakeUpTime = document.getElementById('wake-up').value;
-            const interactionDiv = document.getElementById('interaction');
+    // العنصر لعرض النصوص
+    const englishTextElement = document.getElementById('english-text');
+    const arabicTextElement = document.getElementById('arabic-text');
 
-            if (wakeUpTime) {
-                interactionDiv.innerHTML = `<p>You wake up at ${wakeUpTime}. Good job!</p>`;
+    // زر التحدث
+    const speakButton = document.getElementById('speak-btn');
 
-                // Add grammar practice
-                interactionDiv.innerHTML += `
-                    <p>Can you identify the verb in this sentence?</p>
-                    <p><strong>I wake up at ${wakeUpTime}.</strong></p>
-                    <button onclick="showAnswer()">Show Answer</button>
-                `;
-            } else {
-                interactionDiv.innerHTML = "<p>Please enter a valid time!</p>";
-            }
-        }
+    // وظيفة تشغيل الصوت
+    function speakText(text) {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = text;
+      speech.lang = 'en-US'; // اللغة الإنجليزية
+      window.speechSynthesis.speak(speech);
+    }
 
-        // Function to show the grammar answer
-        function showAnswer() {
-            const interactionDiv = document.getElementById('interaction');
-            interactionDiv.innerHTML += `<p>The verb is: <strong>wake up</strong>. Well done!</p>`;
-        }
-    </script>
+    // حدث عند النقر على زر التحدث
+    speakButton.addEventListener('click', () => {
+      speakText(englishText); // تشغيل النص الإنجليزي
+    });
+  </script>
 </body>
 </html>
